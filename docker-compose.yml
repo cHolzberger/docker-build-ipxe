@@ -1,0 +1,8 @@
+version: "2"
+ 
+services:
+  ipxe-build:
+    build: .
+    volumes: 
+      - ./images:/target
+      - ./ipxe-config:/ipxe

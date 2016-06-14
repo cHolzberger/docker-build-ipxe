@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#WITH_HTTPS
+#PRODUCT_NAME="ipxe rancher boot"
+#IPXE_CONFIG=/etc/dhcp.ipxe
+
+if [ "$IPXE_WITH_HTTPS" == "yes" ]; then 
+	# OPTIONAL: enable HTTPS support
+	sed -i -e '/DOWNLOAD_PROTO_HTTPS/ s/#undef/#define/' /usr/src/ipxe/src/config/general.h
+fi
+
+if [ "$IPXE_PRODUCT_NAME" == "yes" ]; then
+	# OPTIONAL: change product name
+	sed -i 's|PRODUCT_NAME ""|PRODUCT_NAME "$IPXE_PRODUCT_NAME"|g' /usr/src/ipxe/src/config/general.h
+fi
+ 
+cd /usr/src/ipxe/src
+ 
+IMAGES=(ipxe.iso ipxe.usb ipxe.pxe ipxe.lkrn undionly.kpxe)
+
+for IMG in ${IMAGES[@]}; do
+	# build CD image (/usr/src/ipxe/src/bin/ipxe.iso)
+	echo RUNNING: make bin/$IMG EMBED=$IPXE_CONFIG
+	make bin/$IMG EMBED=$IPXE_CONFIG > /target/$IMG.log
+	cp /usr/src/ipxe/src/bin/$IMG /target
+done

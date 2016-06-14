@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+# get source
+git clone git://git.ipxe.org/ipxe.git /usr/src/ipxe
+ 
+cd /usr/src/ipxe/src
+make

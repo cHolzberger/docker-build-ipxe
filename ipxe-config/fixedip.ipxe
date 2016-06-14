@@ -1,0 +1,13 @@
+!#ipxe
+
+set net0/ip 192.168.0.100
+set net0/netmask 255.255.255.0
+set net0/gateway 192.168.0.1
+
+set dns 8.8.8.8
+
+set base-url http://releases.rancher.com/os/latest
+kernel ${base-url}/vmlinuz rancher.cloud_init.datasources=['url:http://mosaiksoftware.de/cloud-config']
+
+initrd ${base-url}/initrd
+boot
