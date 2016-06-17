@@ -11,3 +11,4 @@ See:
 2. RancherOS boot instructions: http://docs.rancher.com/os/running-rancheros/server/ipxe/
 3. IPXE Build Script: http://www.panticz.de/ipxe
 4. Embedding IPXE Build Script: http://ipxe.org/embed
+5. iPXE Scripting: http://ipxe.org/scripting

@@ -20,8 +20,8 @@ IMAGES=(ipxe.iso ipxe.usb ipxe.pxe ipxe.lkrn undionly.kpxe)
 
 for IMG in ${IMAGES[@]}; do
 	# build CD image (/usr/src/ipxe/src/bin/ipxe.iso)
-	echo RUNNING: make bin/$IMG 
-	make bin/$IMG  > /target/$IMG.log
-	mkdir /target/
-	cp /usr/src/ipxe/src/bin/$IMG /target/
+	echo RUNNING: make bin/$IMG EMBED=$IPXE_CONFIG
+	make bin/$IMG EMBED=$IPXE_CONFIG > /target/$IMG.log
+	mkdir /target/embed
+	cp /usr/src/ipxe/src/bin/$IMG /target/embed
 done
